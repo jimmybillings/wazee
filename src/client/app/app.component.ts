@@ -108,7 +108,7 @@ export class AppComponent implements OnInit {
     this.userPreference.getPrefs();
     if (this.userCan.viewCollections()) {
       this.activeCollection.load().subscribe();
-      this.collections.load();
+      this.collections.load().subscribe();
     }
     this.cartSummary.loadCartSummary();
     this.sortDefinition.getSortDefinitions().take(1).subscribe((data: any) => {

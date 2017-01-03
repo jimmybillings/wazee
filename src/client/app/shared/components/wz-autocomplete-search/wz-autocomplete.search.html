@@ -1,5 +1,5 @@
 <div>
-  <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm.value.query)" class="md-inline-form">
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm.value.query)" class="md-inline-form" autocomplete="off">
     <wz-input-suggestions layout="row" flex="100" layout-align="start" #suggestions 
     [fControl]="searchForm.controls['query']" 
     [rawField]="formOptions"

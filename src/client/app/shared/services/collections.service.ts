@@ -31,7 +31,7 @@ export class CollectionsService {
     if (params) this.params = Object.assign({}, this.params, params);
 
     return this.api.get(Api.Assets, `collectionSummary/search`, { parameters: this.params, loading: loading })
-      .subscribe(response => this.store.replaceAllCollectionsWith(response));
+      .do(response => this.store.replaceAllCollectionsWith(response));
   }
 
   public create(collection: Collection): Observable<any> {
