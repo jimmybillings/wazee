@@ -22,6 +22,6 @@ export const APP_ROUTES: Routes = [
   { path: 'collections', component: CollectionsComponent },
   { path: 'content/:page', component: ContentComponent },
   { path: 'admin', component: AdminComponent },
-  // { path: 'commerce', component: CommerceComponent },
+  { path: 'commerce', component: CommerceComponent },
   { path: '**', component: NotFoundComponent }
 ];
