@@ -1,0 +1,175 @@
+wz-autocomplete-search {
+  width: 100%;
+  margin: 2rem(2.0) 0 0 0;
+  position: relative;
+  wz-input-suggestions {
+    width:100%;
+    display: block;
+    .suggestions-menu.revealed {
+      top: rem(4.6);
+      left: 0;
+    }
+  }
+  input {
+    font-size: 1.2em;
+    width: calc(100% - 46px);
+    padding: 0 0 0 3%;
+    max-height: rem(4.6);
+    min-height: rem(4.6);
+    border: none;
+    @include placeholder {
+      color: md-color($md-foreground, hint-text);
+    }
+    color: md-color($md-foreground, secondary-text);
+    background-color:  rgba(md-color($md-background, app-bar), .9);
+    @include transition(max-height 0.45s, min-height 0.35s, $swift-ease-in-out-timing-function);
+    border-radius: 0;
+    &:focus {
+      outline: none;
+      background-color: lighten(md-color($md-background, app-bar), 40%);
+    }
+  }
+  button[type="submit"] {
+    cursor: pointer;
+    font-size: 0;
+    border: none; 
+    background-color: md-color($md-accent, 800, .95);
+    min-width: rem(4.4);
+    @include transition($swift-ease-in);
+    md-icon.material-icons {
+      font-size: rem(3.4);
+      width: rem(3.4);
+      height: rem(3.4);
+      color: $white-87-opacity;
+      text-shadow: md-color($md-grey, 900, .2) 0 1px 2px;
+    }
+    &:hover {
+      background-color: md-color($md-accent, 700, 1);
+    }
+    &[disabled] {
+      cursor: default;
+      background-color: md-color($md-accent, 800, .95);
+      md-icon.material-icons {
+        opacity: .6;
+       }
+    }
+  }
+  button.close {
+   display: none; 
+  }
+  select:empty {
+    display: none;
+  }
+}
+// search box in the header
+header.app-header {
+  wz-autocomplete-search {
+    form {
+      background-color: md-color($md-background, app-bar);
+    }
+    margin: 0;
+    input {
+      width: calc(100% - 60px);
+      font-size: 1.24em;
+      padding: 0 0 0 rem(1.6);
+    }
+    button[type="submit"] {
+      background-color: md-color($md-primary, 700, .45);
+      md-icon.material-icons {
+        font-size: rem(3.3);
+        text-shadow: none;
+      }
+    }
+    wz-input-suggestions button.filter-toggle + input + button[type="submit"] + .suggestions-menu.revealed {
+      left: rem(14.0);
+      width: 50vw;
+      @media screen and (max-width: $layout-breakpoint-sm) and (min-width: 0) and (orientation: portrait)  {
+        left: 0;
+        width: 100vw;
+        top: rem(4.0);
+      }
+    }
+  }
+  button.filter-toggle {
+    @include background-image(
+      linear-gradient(md-color($md-primary, 800, .06), md-color($md-primary, 800, .06)),
+      linear-gradient(rgba(md-color($md-foreground, base), .5), rgba(md-color($md-foreground, base), .5))
+    );
+    @include text-contrast(md-color($md-foreground, base));
+    height: auto;
+    border-radius: 0;
+    padding: 0 rem(4.0) 0 rem(3.0);
+    width: rem(14.0);
+    max-width: rem(14.0);
+    min-width: rem(14.0);
+    md-icon.material-icons {
+      position: absolute;
+      top: rem(1.0);
+      right: rem(2.4);
+    }
+    &:hover {
+      background-color: rgba(md-color($md-foreground, base), .55);
+    }
+  }
+  button.close {
+    display: block;
+    margin: 0;
+    height: auto;
+    width: rem(3.4);
+    min-width: rem(3.4);
+    padding: 0;
+    border-radius: 0;
+    font-size: 0;
+    line-height: 0;
+    border: none;
+    md-icon.material-icons {
+      font-size: rem(2.3);
+      line-height: .5;
+      @include text-contrast(md-color($md-background, background));
+      opacity: .5;
+    }
+  }
+  button:focus {
+    outline: none;
+  }
+  @media screen and (max-width: $layout-breakpoint-sm) and (min-width: 0) and (orientation: portrait)  {
+    wz-autocomplete-search {
+      input {
+        // width: calc(100% - 70px);
+        max-height: rem(4);
+        min-height: rem(4);
+        font-size: 1em;
+      }
+    }
+  }
+}
+header.app-header.fixed {
+  wz-autocomplete-search {
+    form {
+      box-shadow: inset 0 1px 0 0 md-color($md-grey, 800, .1);
+      background-color: transparent;
+    }
+    input {
+      background-color: transparent;
+    }
+    button[type="submit"] md-icon.material-icons, button.filter-toggle {
+      @include text-contrast(md-color($md-primary, 700), md-color($md-grey, 700), md-color($md-grey, 100));
+    }
+  }
+}
+header.app-header.search-closed wz-autocomplete-search {
+  input {
+    max-height: 0;
+    min-height: 0;
+    @include placeholder {
+      opacity: 0;
+  }
+  }
+  button, button.close, button.filter-toggle {
+    max-height: 0;
+    min-height: 0;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}

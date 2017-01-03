@@ -1,0 +1,336 @@
+collections-list-dd, collections-filter-dd, collections-sort-dd, asset-share, asset-share-link {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 20;
+  &:parent {
+    z-index: 100;
+  }
+  &.revealed {
+    margin-top: 0;
+  }
+  &.revealed .collections-dd-menu {
+    @include animation-name(dd-open);
+    @include animation-duration(200ms);
+    @include animation-timing-function($swift-ease-in-timing-function);
+    @include animation-iteration-count(1);
+    @include animation-fill-mode(backwards);
+  }
+  &.revealed .dd-menu-wrapper {
+    @include animation-name(fadeIn);
+    @include animation-duration(200ms);
+    @include animation-timing-function($swift-ease-in-timing-function);
+    @include animation-iteration-count(1);
+    @include animation-delay(250ms);
+    @include animation-fill-mode(backwards);
+  }
+  .collections-dd-menu {
+    @include md-elevation(6);
+    @include transition($swift-ease-out);
+    min-width: rem(40.0);
+    background-color: md-color($md-background, background);
+    color: rgba(md-color($md-foreground, text), .7);
+    @media screen and (max-width: $layout-breakpoint-sm) and (min-width: 0) and (orientation: portrait)  {
+      position: static;
+      min-width: 100%;
+      max-width: 100%;
+    }
+    header {
+      padding-top: rem(.9);
+      padding-right: rem(1.4);
+      padding-bottom: rem(.9);
+      padding-left: rem(1.4);
+      box-shadow: inset 0 -1px 0 0 md-color($md-foreground, divider), 0 1px 0 0 md-color($md-background, card);
+      background-color: md-color($md-primary, default);
+      @include text-contrast(md-color($md-primary, default));
+      .md-headline {
+        font-size: rem(2.0);
+        margin: 0;
+        margin-top: rem(.5);
+        width: calc(100% - 120px);
+      }
+      .tools {
+        white-space: nowrap;
+        text-align: right;
+        button {
+          @include transition($swift-ease-out);
+          &:hover {
+            @include text-contrast(md-color($md-primary, default));
+            // color: md-color($md-primary);
+            background-color: md-color($md-foreground, base, .1);
+          }
+          // once they put a transition into the ::after pseudo class this can go away
+          &[md-icon-button]:hover::after {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+    .query-details {
+      background-color: rgba(md-color($md-primary, default), .12); 
+      color: md-color($md-foreground, secondary-text);
+      span {
+        margin-left: rem(1.3);
+        margin-right: rem(1.3);
+        margin-top: 0;
+        display: inline-block;
+        position: relative;
+        padding-left: rem(2.3);
+        line-height: rem(1.9);
+        &:before {
+          content: " ";
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: rem(2);
+          width: rem(2);
+          border-radius: 50%;
+        }
+        &:after {
+          content: "\e152";
+          font-family: 'Material Icons';
+          font-weight: 100;
+          font-size: rem(1.5);
+          line-height: rem(1.7);
+          height: rem(2);
+          width: rem(2);
+          position: absolute;
+          left: 0;
+          top: 50%;
+          @include transform(translateY(-50%));
+          text-align: center;
+        }
+        &.search:after {
+          content: "\e8b6";
+        }
+        &.sort:after {
+          content: "\e164";
+        }
+        &:first-child {
+          margin-top: rem(1.2);
+        }
+        &:last-child {
+          margin-bottom: rem(1.2);
+        }
+        strong {
+          display: inline-block;
+          padding-right: rem(.5);
+          font-weight: 600;
+        }
+      }
+    }
+    md-list {
+      margin-top: rem(1.6);
+      margin-bottom: rem(1.6);
+      margin-left: rem(1.6);
+      margin-right: rem(1.6);
+      padding-top: 0;
+      border: 1px solid md-color($md-foreground, divider);
+      max-height: rem(34.2);
+      min-height: rem(31.2);
+      overflow-x: hidden;
+      // margin-bottom: rem(1.1);
+      md-list-item .md-list-item {
+        height: rem(3.8);
+        padding: 0;
+        button {
+          height: rem(3.8);
+          color: rgba(md-color($md-foreground, text), .7);
+          display: flex;
+          align-items: center;
+          width: 100%;
+          padding: 0;
+          margin: 0;
+          border: none;
+          text-align: left;
+          background: none;
+          background-color: transparent;
+          font-size: inherit;
+          line-height: inherit;
+          @include transition($swift-ease-out);
+          padding-left: rem(1.6);
+          padding-right: rem(1.6);
+          box-shadow: inset 0 1px 0 0 md-color($md-foreground, divider);
+          &:hover, &:focus {
+            cursor: pointer;
+            color: md-color($md-primary);
+            background-color: rgba(md-color($md-foreground, base), .1);
+            outline: none;
+          }
+          &[disabled] {
+            color: rgba(md-color($md-foreground, text), .3);
+            &:hover {
+              background: none;
+              background-color: transparent;
+              cursor: default;
+            }
+          }
+        }
+        md-icon {
+          @include transition($swift-ease-out);
+          opacity: .15;
+          margin-right: rem(1.4);
+          &.right-align.material-icons {
+            margin-left: auto;
+            margin-right: rem(-.3);
+            opacity: .3;
+          }
+        }
+      }
+      md-list-item.active .md-list-item button {
+        color: md-color($md-primary);
+        background-color: rgba(md-color($md-foreground, base), .07);
+        box-shadow: inset 0 1px 0 0 md-color($md-foreground, base), .05;
+        md-icon {
+          opacity: 1;
+        }
+        &:hover {
+          cursor: default;
+        }
+      }
+      md-list-item:first-child .md-list-item button {
+        box-shadow: none;
+      }
+    }
+    footer .actions {
+      margin-bottom: rem(1.6);
+      [md-button], button {
+        @include transition($swift-ease-out);
+        line-height: 1;
+        white-space: normal;
+        min-width: rem(9.2);
+        padding-top: rem(.4);
+        padding-bottom: rem(.4);
+        padding-left: rem(.8);
+        padding-right: rem(.8);
+        margin-left: rem(.4);
+        margin-right: rem(.4);
+        &:hover {
+          color: md-color($md-primary);
+          background-color: rgba(md-color($md-foreground, base), .07);
+          md-icon {
+            opacity: 1;
+          }
+        }
+        // once they put a transition into the ::after pseudo class this can go away
+        &:hover::after {
+          background-color: transparent;
+        }
+        .md-button-ripple {
+          display:none;
+        }
+      }
+      md-icon {
+        font-size: 32px;
+        width: 32px;
+        height: 32px;
+        opacity: .8;
+      }
+      .label {
+        display: block;
+        text-align: center;
+        font-size: .76em;
+        text-transform: none;
+        opacity: .8;
+      }
+    }
+  }
+}
+
+.dd-menu-wrapper {
+  position: relative;
+}
+.dd-menu-wrapper asset-share-link,
+.dd-menu-wrapper collections-filter-dd,
+.dd-menu-wrapper collections-sort-dd {
+  right: 0;
+  top: 0;
+}  
+.dd-menu-wrapper asset-share-link .collections-dd-menu,
+.dd-menu-wrapper collections-filter-dd .collections-dd-menu,
+.dd-menu-wrapper collections-sort-dd .collections-dd-menu {
+  position: absolute;
+  right: 0;
+  min-width: 100%;
+  @include md-elevation(2);
+  header {
+    display: flex;
+    padding-left: rem(.3);
+    padding-right: rem(.3);
+    background-color: rgba(md-color($md-foreground, base), .05);
+    @include text-contrast(md-color($md-background, card), rgba(md-color($md-foreground, base), .75), md-color($md-background, card));
+    .md-headline {
+      margin-left: rem(2.1);
+    }
+    .tools button.back {
+      @include transform(rotate(90deg));
+    }
+    .tools button:hover {
+      color: md-color($md-primary);
+    }
+  }
+  .md-menu {
+    min-width: 100%;
+    box-shadow: none;
+  }
+}
+
+collections-list-dd .collections-dd-menu .dd-menu-wrapper wz-item-search-form {
+  z-index: 3;
+  position: absolute;
+  overflow: hidden;
+  margin-right: 0;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  background-color: transparent;
+  & > div[layout] {
+    background-color: rgba(md-color($md-background, card), 1);
+    min-height: rem(5.8);
+    box-shadow: inset 0 -1px 0 0 md-color($md-foreground, divider);
+  }
+  .tools {
+    display: flex;
+    button {
+      @include transform(rotate(90deg));
+      @include text-contrast(md-color($md-background, card), rgba(md-color($md-foreground, base), .75), md-color($md-background, card));
+      &:hover {
+        color: md-color($md-primary);
+      }
+    }
+  }
+  form {
+    min-height: rem(5.8);
+    padding-top: rem(.8);
+    padding-bottom: rem(.8);
+    padding-left: rem(.3);
+    padding-right: rem(.1);
+    border: none;
+    button[type="submit"],button[type="reset"] {
+      md-icon.material-icons {
+        color: md-color($md-primary);
+      }
+    }
+    input {
+      border-width: 0;
+      max-height: 100%;
+      min-height: 100%;
+      padding-left: rem(1.8);
+      background-color: rgba(md-color($md-background, card), 1);
+    }
+  }
+}
+
+@include keyframes(dd-open) {
+  0% {
+    max-height: 0;
+    max-width: 0;
+    min-width: 0;
+    overflow: hidden;
+  }
+  100% {
+    max-height: rem(44.1);
+    max-width: rem(40.0);
+    min-width: rem(32.0);
+  }
+}

@@ -1,0 +1,101 @@
+form button {
+  &.conversion {
+    min-width: 94%;
+    padding: 2px 40px;
+  }
+}
+
+wz-form form {
+  margin-top: rem(2.6);
+  md-input {
+    width: 100%;
+    margin-top: rem(1.2);
+    margin-bottom: rem(1.2);
+    font-size: 1.1em;
+  }
+  a.view-tos {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  md-card-actions {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: rem(1.6);
+  }
+  .indicate-required {
+    font-size: 84%;
+    margin-top: rem(3.8);
+    margin-bottom: rem(.8);
+    opacity: .8;
+    > span {
+      display: block;
+      position: relative;
+      padding-left: rem(1.1);
+      &::before {
+        content: "*";
+        font-size: 130%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+  // .md-primary[md-raised-button], 
+  // .md-primary[md-fab], 
+  // .md-primary[md-mini-fab] {
+  //   background-color: md-color($md-primary, 700, .85);
+  // }
+}
+// md-card, .wz-form-card {
+//   .md-primary[md-button] {
+//     @include transition($swift-ease-out);
+//     // color: md-color($md-primary, default);
+//   }
+// }
+// md-card, .wz-form-card {
+//   [md-button]:hover.md-primary::after, [md-icon-button]:hover.md-primary::after {
+//     background-color: rgba(md-color($md-primary, default), .12);
+//   }
+// }
+ 
+*[md-button] {
+  text-transform: uppercase;
+}
+
+// testing error display in form.
+// currently using md-hint this may change with ng2 material recommendation
+md-input.show-errors.ng-invalid,
+md-input.ng-touched.ng-dirty.ng-invalid {
+  .md-input-placeholder {
+    color: md-color($warn, 600);
+    &.md-float.md-focused .md-placeholder-required {
+      color: md-color($warn, 600);
+    }
+  }
+  .md-input-wrapper {
+    .md-input-underline {
+      border-top-color: md-color($warn, 600);
+      .md-input-ripple {
+        background-color: md-color($warn, 600);
+      }
+    }
+  } 
+  md-hint.error {
+    color: md-color($warn, 600);
+  }
+}
+
+md-checkbox.ng-dirty.ng-touched.ng-invalid {
+  .md-checkbox-inner-container {
+    .md-checkbox-frame {
+     color: md-color($md-warn, 600); 
+    }
+  }
+  md-hint.error {
+    span {
+      color: md-color($md-warn, 600);
+      position: relative;
+      top: rem(-16);
+    }
+  }
+}

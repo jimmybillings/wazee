@@ -1,0 +1,89 @@
+// button modifiers
+@mixin md-button-reset {
+  background: transparent;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  border: none;
+}
+
+[md-button] {
+// outlined button
+  &.is-outlined {
+    border: 1px solid md-color($md-foreground, divider);
+    line-height: rem(3.300);
+    &.md-primary {
+      border: 1px solid md-color($md-primary, default, .4);
+    }
+    &.md-accent {
+      border: 1px solid md-color($md-accent, 500, .4);
+    }
+    &.md-warn {
+      border: 1px solid md-color($md-warn, 500, .4);
+    }
+  }
+// drop down indicator on a button
+  &.is-dd {
+    position: relative;
+    padding-right: rem(2.40);
+    padding-left: rem(1.00);
+    &:not[hide] {
+      display: block;
+    }
+    // &[hide] {
+    //   display: none;
+    // }
+    .md-button-wrapper::after {
+      color: md-color($md-foreground, secondary-text);
+      @include transition(opacity 0.4s);
+      font-family: 'Material Icons';
+      content: "\e5c5";
+      font-size: rem(2.1);
+      position: absolute;
+      right: rem(.2);
+      top: rem(-.1);
+    }
+    &.md-primary .md-button-wrapper::after {
+      color: contrast-color(md-color($md-primary));
+    }
+    &.md-accent .md-button-wrapper::after {
+      color: contrast-contrast(md-color($md-accent));
+    }
+    &.md-warn .md-button-wrapper::after {
+      color: contrast-color(md-color($md-warn));
+    }
+    &.md-icon-button {
+      min-width: rem(4.0);
+      max-height: rem(4.0);
+      min-height: rem(4.0);
+      border-radius: rem(.2);
+      padding-left: rem(.4);
+      padding-right: rem(1.4);
+      padding-top: rem(.8);
+      padding-bottom: 0;
+      .md-button-wrapper::after {
+        right: rem(-.3);
+        top: rem(.3);
+      }
+    }
+  }
+}
+
+md-progress-bar {
+    .md-progress-bar-primary.md-progress-bar-fill {
+        &:after {
+            background-color:md-color($md-accent, 0) !important;
+        }
+    }
+    .md-progress-bar-secondary.md-progress-bar-fill {
+        &:after {
+            background-color:md-color($md-accent)!important;
+        }
+    }
+    .md-progress-bar-buffer {
+        background-color:md-color($md-accent, 100) !important;
+    }
+}
+
+/* TODO - Should look at removing this in the future. The overlay index clashes with our header.*/
+.md-menu-click-catcher { z-index: 5; }

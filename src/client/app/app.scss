@@ -1,0 +1,48 @@
+@import 'imports/styles/vendor';
+
+// change theme colors and any other global variables
+@import '../assets/styles/theme';
+
+@import '../assets/styles/config';
+@import 'imports/styles/wazee';
+
+// APPLICATION WIDE COMPONENTS
+@import 'application/app-nav/app-nav';
+@import 'application/footer/footer';
+@import 'application/collection-tray/collection-tray';
+@import 'application/collection-tray/components/collection-form';
+@import 'application/collection-tray/components/collections-list-dd';
+
+// SHARED COMPONENTS
+@import 'shared/components/wz-asset-list/wz.asset-list';
+@import 'shared/components/wz-list/wz.list';
+@import 'shared/components/wz-pagination/wz.pagination';
+@import 'shared/components/wz-toast/wz.toast';
+@import 'shared/components/wz-dialog/wz.dialog';
+@import 'shared/components/wz-notification/wz.notification';
+@import 'shared/components/wz-form/wz.form';
+@import 'shared/components/wz-breadcrumb/wz-breadcrumb';
+@import 'shared/components/wz-pikaday/wz.pikaday';
+@import 'shared/components/wz-form/components/wz-input-tags/wz-input-tags';
+@import 'shared/components/wz-sort/wz.sort';
+@import 'shared/components/wz-select/wz.select';
+@import 'shared/components/wz-autocomplete-search/wz-autocomplete.search';
+
+// ROUTE COMPONENTS
+@import '+home/home';
+@import '+user-management/+login/login';
+@import '+user-management/+register/register';
+@import '+user-management/+profile/profile';
+@import '+collection/+index/collections';
+@import '+collection/+show/collection-show';
+@import '+asset/components/asset-detail';
+@import '+asset/components/asset-data';
+@import '+search/search';
+@import '+search/filter';
+@import '+admin/+ui-config/ui-config';
+@import '+commerce/+cart/cart';
+@import '+commerce/+cart/components/projects';
+@import '+commerce/+cart/components/line-items';
+@import '+commerce/+cart/components/asset';
+@import '+commerce/+order/+show/order-show';
+@import '+commerce/+order/+index/orders';

@@ -1,0 +1,162 @@
+// this is can go away once the temporary legacy find assets in this collection goes away(post beta)
+.wz-dialog collection-link-component md-card {
+  width: 32vw;
+  padding: rem(3.2);
+  padding-bottom: rem(3.8);
+  padding-top: rem(3.8);
+  button[md-icon-button].close {
+    position: absolute;
+    right: rem(.5);
+    top: rem(.5);
+    font-size: 36px;
+    opacity: .5;
+    md-icon {
+      font-size: 1em;
+      height: 1em;
+      width: 1em;
+    }
+  }
+  @media screen and (max-width: $layout-breakpoint-lg) and (min-width: 0)  {
+    width: 32vw;
+  }
+  @media screen and (max-width: $layout-breakpoint-md) and (min-width: 0)  {
+    width: 50vw;
+  }
+  @media screen and (max-width: $layout-breakpoint-sm) and (min-width: 0)  {
+    width: 72vw;
+  }
+  @media screen and (max-width: $layout-breakpoint-xs) and (min-width: 0) and (orientation: portrait)  {
+    width: calc(100% - 80px);
+    margin: rem(.8);
+  }
+} 
+.wz-dialog collection-form md-card {
+  width: 22vw;
+  @media screen and (max-width: $layout-breakpoint-lg) and (min-width: 0)  {
+    width: 25vw;
+  }
+  @media screen and (max-width: $layout-breakpoint-md) and (min-width: 0)  {
+    width: 36vw;
+  }
+  @media screen and (max-width: $layout-breakpoint-sm) and (min-width: 0)  {
+    width: 52vw;
+  }
+  .suggestions-menu {
+      width: calc(100% - 102px);
+      @media screen and (max-width: $layout-breakpoint-xs) and (min-width: 0) and (orientation: portrait)  {
+        width: calc(100% - 70px);
+        top: rem(16.0);
+      }
+  }
+}
+.suggestions-menu {
+  width: 30vw;
+  @media screen and (max-width: $layout-breakpoint-lg) and (min-width: 0)  {
+    width: 40vw;
+  }
+  @media screen and (max-width: $layout-breakpoint-md) and (min-width: 0)  {
+    width: 55vw;
+  }
+  @media screen and (max-width: $layout-breakpoint-sm) and (min-width: 0)  {
+    width: 78vw;
+  }
+  @media screen and (max-width: $layout-breakpoint-xs) and (min-width: 0) and (orientation: portrait)  {
+    width: calc(100% - 70px);
+  }
+}
+.wz-dialog collection-form md-card {
+  @media screen and (max-width: $layout-breakpoint-xs) and (min-width: 0) and (orientation: portrait)  {
+    width: calc(100% - 85px);
+    padding: 33px 34px 24px 34px;
+  }
+}  
+.suggestions-menu {
+  @include transition($swift-ease-out);
+  background-color: md-color($md-background, card);
+  color: rgba(md-color($md-foreground, text), .7);
+  height: auto;
+  overflow-y: auto;
+  position: absolute;
+  z-index: 20;
+  top: rem(18);
+  display: none;
+  border: 1px solid md-color($md-foreground, divider);
+  .heading {
+    margin: 0;
+    padding-top: rem(1.1); 
+    padding-right: 0; 
+    padding-bottom: rem(.9); 
+    padding-left: rem(1.0);
+    border-bottom: 1px solid md-color($md-foreground, divider);
+    opacity: .5;
+    font-size: 1.1em;
+  }
+  &.revealed {
+    display: block;
+    @include md-elevation(1);
+    @include animation-name(open-menu);
+    @include animation-duration(120ms);
+    @include animation-timing-function($swift-ease-in-timing-function);
+    @include animation-iteration-count(1);
+    @include animation-fill-mode(backwards);
+  }
+  md-list {
+    padding-top: 0;
+    overflow-x: hidden;
+    md-list-item .md-list-item {
+      padding: 0;
+      height: rem(4.2);
+      button {
+        height: rem(4.2);
+        color: rgba(md-color($md-foreground, text), .7);
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border: none;
+        text-align: left;
+        background: none;
+        background-color: transparent;
+        font-size: 1.1em;
+        line-height: inherit;
+        @include transition($swift-ease-out);
+        padding-left: rem(1.6);
+        padding-right: rem(1.6);
+        // box-shadow: inset 0 1px 0 0 md-color($md-foreground, divider);
+        &:hover, &:focus, &.active {
+          cursor: pointer;
+          color: md-color($md-primary);
+          background-color: rgba(md-color($md-foreground, base), .1);
+          outline: none;
+        }
+      }
+    }
+    md-list-item.focused .md-list-item button {
+      color: md-color($md-primary);
+      background-color: rgba(md-color($md-foreground, base), .07);
+      box-shadow: inset 0 1px 0 0 md-color($md-foreground, base), .05;
+      md-icon {
+        opacity: 1;
+      }
+      &:hover {
+        cursor: default;
+      }
+    }
+    md-list-item:first-child .md-list-item button {
+      box-shadow: none;
+    }
+  }
+}
+
+
+@include keyframes(open-menu) {
+  0% {
+    max-height: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+  100% {
+    max-height: rem(44.1);
+  }
+}
