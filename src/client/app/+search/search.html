@@ -1,7 +1,7 @@
 <div #target></div>
 <md-sidenav-layout>
 	<md-sidenav #searchFilter align="start" mode="side">
-		<div class="cdk-overlay-container" *ngIf="(uiState.data | async).loading">
+		<div class="md-overlay-container" *ngIf="(uiState.data | async).loading">
 			<md-progress-bar color="accent" mode="indeterminate"></md-progress-bar>
 		</div>
 		<md-slide-toggle class="count-toggle" [checked]="preferences.displayFilterCounts" color="primary" value="toggle" (change)="countToggle($event)">{{ 'SEARCH.FILTERS.FILTER_COUNT_TOOGLE_LABEL' | translate }}</md-slide-toggle>
@@ -18,6 +18,26 @@
 					<button md-button class="is-dd" color="primary" [md-menu-trigger-for]="assetSortMenu">
 						<span class="key">{{'SEARCH.SORT_BTN_LABEL' | translate }}</span><span class="value md-caption">{{ sortOptions.currentSort.name }}</span>
 					</button>
+					<!--this will go in as part of the search view selection and search preferences -->
+					<!--<button md-button title="{{ 'SEARCH.SETTING_BTN_HOVER_TITLE' | translate }}" [md-menu-trigger-for]="searchSettings" class="md-icon-button is-dd settings" color="primary"><md-icon>settings</md-icon></button>
+					<md-menu x-position="before" #searchSettings="mdMenu">
+						<button md-menu-item (click)="comingSoonDialog.show()">
+							<md-icon>view_comfy</md-icon>View as grid
+						</button>
+						<button md-menu-item (click)="comingSoonDialog.show()">
+							<md-icon>view_list</md-icon>View as list
+						</button>
+						<div class="divider"></div>
+						<button md-menu-item>
+							50 assets per page
+						</button>
+						<button md-menu-item>
+							100 assets per page
+						</button>
+						<button md-menu-item>
+							200 assets per page
+						</button>
+					</md-menu>-->
 				</div>
 			</div>
 		</header>
@@ -31,10 +51,11 @@
 					<wz-pagination flex="noshrink" *ngIf="assets.pagination.totalCount > 0" [pagination]="assets.pagination" (getPage)="changePage($event)"></wz-pagination>
 				</div>
 
+
 				<no-results *ngIf="!assets.items"></no-results>
-				<wz-asset-list [assets]="assets.items" [userCan]="userCan" [currentUser]="currentUser" [collection]="activeCollection.data | async" [assetService]="assetService"
+				<wz-asset-list [assets]="assets.items" [userCan]="userCan" [currentUser]="currentUser" [collection]="activeCollection.data | async"
 					(onAddToCollection)="addToCollection($event)" (onRemoveFromCollection)="removeFromCollection($event)" (onShowNewCollection)="showNewCollection($event)"
-					(addToCart)="addAssetToCart($event)" (onDownloadComp)="downloadComp($event)" class="{{config.viewType.value}}">
+					(addToCart)="addAssetToCart($event)" (onDownloadComp)="downloadComp($event)" (showSpeedview)="showSpeedview($event)" (hideSpeedview)="hideSpeedview()" class="{{config.viewType.value}}">
 				</wz-asset-list>
 				<wz-pagination *ngIf="assets.pagination.totalCount > 0" [pagination]="assets.pagination" (getPage)="changePage($event)"></wz-pagination>
 			</div>
@@ -45,3 +66,5 @@
 <md-menu x-position="before" #assetSortMenu="mdMenu">
 	<wz-sort-component [current]="sortOptions.currentSort" [items]="sortOptions.sorts" (sort)="onSortResults($event)"></wz-sort-component>
 </md-menu>
+
+<wz-speedview [speedviewData]="speedviewData | async"></wz-speedview>

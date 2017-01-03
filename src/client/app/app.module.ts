@@ -31,7 +31,7 @@ import { NotFoundComponent } from './app.not-found.component';
     ContentModule,
     UserManagementModule,
     AdminModule,
-    // CommerceModule,
+    CommerceModule,
     ApplicationModule,
     StoreModule.provideStore(WAZEE_STORES)
   ],
