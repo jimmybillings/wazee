@@ -66,7 +66,7 @@ export class WzDropdownComponent {
         this.overlay.position().global().left('0px').top('0px');
     } else {
       let ref: ElementRef = new ElementRef(event.target);
-      let originPosition: OriginConnectionPosition = { originX: 'start', originY: 'top' };
+      let originPosition: OriginConnectionPosition = { originX: 'end', originY: 'top' };
       let overlayPosition: OverlayConnectionPosition = { overlayX: 'start', overlayY: 'top' };
       this.config.positionStrategy =
         this.overlay.position().connectedTo(ref, originPosition, overlayPosition);
