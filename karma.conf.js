@@ -20,6 +20,7 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'src/client/global-variables.js',
       // Polyfills.
       'node_modules/core-js/client/shim.min.js',
       'node_modules/intl/dist/Intl.min.js',
@@ -46,6 +47,12 @@ module.exports = function (config) {
       // Angular itself
       { pattern: 'node_modules/@angular/**/*.js', included: false, watched: true },
       { pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false },
+
+      { pattern: 'node_modules/ng2-translate/**/*.js', included: false, watched: false },
+      { pattern: 'node_modules/@ngrx/**/*.js', included: false, watched: false },
+      { pattern: 'node_modules/pikaday/pikaday.js', included: false, watched: false },
+      { pattern: 'node_modules/clipboard/dist/clipboard.min.js', included: false, watched: false },
+      { pattern: 'node_modules/@angular/material/**/*.js', included: false, watched: false },
 
       { pattern: 'dist/dev/**/*.js', included: false, watched: true },
       { pattern: 'dist/dev/**/*.html', included: false, watched: true, served: true },

@@ -25,9 +25,9 @@ export class AssetComponent implements OnInit {
     public activeCollection: ActiveCollectionService,
     public searchContext: SearchContext,
     public uiState: UiState,
+    public assetService: AssetService,
+    public uiConfig: UiConfig,
     private userPreference: UserPreferenceService,
-    private assetService: AssetService,
-    private uiConfig: UiConfig,
     private notification: WzNotificationService,
     private cartSummary: CartSummaryService,
     private window: Window) {
