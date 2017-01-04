@@ -1,9 +1,9 @@
 {
-  "name": "angular-seed",
+  "name": "wazee-ui",
   "version": "0.0.0",
-  "description": "Modular starter project for Angular 2 (and beyond) with statically typed build and AoT compilation",
+  "description": "A UI library to build multiple Wazee Digital Portals.",
   "repository": {
-    "url": "https://github.com/mgechev/angular-seed"
+    "url": "https://github.com/t3mediacorp/wazee-ui"
   },
   "scripts": {
     "build.dev": "gulp build.dev --color --env-config dev",
@@ -11,6 +11,7 @@
     "build.e2e": "gulp build.e2e --color",
     "build.prod": "gulp build.prod --color --env-config prod --build-type prod",
     "build.prod.exp": "gulp build.prod.exp --color --env-config prod --build-type prod",
+    "build.library": "gulp build.library.export --env library",
     "build.prod.aot": "gulp build.prod.exp --color --env-config prod --build-type prod",
     "build.test": "gulp build.test --color",
     "test.watch": "gulp test.watch --color",
@@ -29,6 +30,8 @@
     "serve.e2e": "gulp serve.e2e --color",
     "serve.prod": "gulp serve.prod --color --env-config prod",
     "serve.prod.exp": "gulp serve.prod.exp --color --env-config prod",
+    "spec.generate": "ts-node spectools/generateSpecs.ts",
+    "spec.validate": "ts-node spectools/validateSpecs.ts",
     "start": "gulp serve.dev --color",
     "start.deving": "gulp start.deving --color",
     "tasks.list": "gulp --tasks-simple --color",
@@ -40,7 +43,7 @@
     "compodoc": "node_modules/.bin/compodoc -p src/client/tsconfig.json",
     "serve.compodoc": "node_modules/.bin/compodoc -s"
   },
-  "author": "Minko Gechev <mgechev>",
+  "author": "Wazee Digital, Denver CO",
   "license": "MIT",
   "devDependencies": {
     "@angular/compiler-cli": "~2.4.0",
@@ -106,6 +109,7 @@
     "karma-mocha-reporter": "^2.2.0",
     "karma-remap-istanbul": "^0.2.1",
     "merge-stream": "^1.0.0",
+    "merge2": "^1.0.2",
     "minimatch": "^3.0.3",
     "open": "0.0.5",
     "protractor": "^4.0.9",

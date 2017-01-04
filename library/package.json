@@ -1,0 +1,33 @@
+{
+  "name": "wazee-ui-library",
+  "version": "0.0.0",
+  "description": "Wazee Library for use in Wazee Products",
+  "repository": {
+    "url": "https://github.com/t3mediacorp/wazee-ui-library.git"
+  },
+  "author": "James Billings <jimmybillings>, Jeff Hyde <jhyde>",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "2.1.2",
+    "@angular/compiler": "2.1.2",
+    "@angular/core": "2.1.2",
+    "@angular/forms": "2.1.2",
+    "@angular/http": "2.1.2",
+    "@angular/platform-browser": "2.1.2",
+    "@angular/platform-browser-dynamic": "2.1.2",
+    "@angular/router": "3.1.2",
+    "@angular/material": "2.0.0-alpha.9-3",
+    "core-js": "2.4.1",
+    "es-module-loader": "1.3.5",
+    "reflect-metadata": "0.1.8",
+    "rxjs": "5.0.0-beta.12",
+    "systemjs": "0.19.39",
+    "zone.js": "0.6.25",
+    "@ngrx/core": "^1.1.0",
+    "@ngrx/store": "^2.1.2",
+    "clipboard": "^1.5.12",
+    "hammerjs": "^2.0.8",
+    "ng2-translate": "^2.1.0",
+    "pikaday": "^1.4.0"
+  }
+}
