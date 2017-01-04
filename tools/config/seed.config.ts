@@ -26,7 +26,8 @@ import { BuildType, ExtendPackages, InjectableDependency } from './seed.config.i
  */
 export const BUILD_TYPES: BuildType = {
   DEVELOPMENT: 'dev',
-  PRODUCTION: 'prod'
+  PRODUCTION: 'prod',
+  LIBRARY: 'library'
 };
 
 /**
@@ -241,10 +242,16 @@ export class SeedConfig {
   TMP_DIR = `${this.DIST_DIR}/tmp`;
 
   /**
+   * The folder for library files.
+   * @type {string}
+   */
+  LIB_DEST = `${this.DIST_DIR}/library`;
+
+  /**
    * The folder for the built files, corresponding to the current environment.
    * @type {string}
    */
-  APP_DEST = this.BUILD_TYPE === BUILD_TYPES.DEVELOPMENT ? this.DEV_DEST : this.PROD_DEST;
+  APP_DEST = `${this.DIST_DIR}/${this.BUILD_TYPE}`;
 
   /**
    * The folder for the built CSS files.
@@ -400,7 +407,8 @@ export class SeedConfig {
     base: this.PROJECT_ROOT,
     packageConfigPaths: [
       join('node_modules', '*', 'package.json'),
-      join('node_modules', '@angular', '*', 'package.json')
+      join('node_modules', '@angular', '*', 'package.json'),
+      join('node_modules', '@ngrx', '*', 'package.json')
     ],
     paths: {
       // Note that for multiple apps this configuration need to be updated
@@ -447,6 +455,10 @@ export class SeedConfig {
       '@angular/router': {
         main: 'index.js',
         defaultExtension: 'js'
+      },
+      '@angular/material': {
+        format: 'cjs',
+        main: 'material.umd.js',
       },
       'rxjs': {
         main: 'Rx.js',
@@ -675,7 +687,9 @@ function getBuildType() {
   let prodKeyword = !!base.filter(o => o.indexOf(BUILD_TYPES.PRODUCTION) >= 0).pop();
   if ((base && prodKeyword) || type === BUILD_TYPES.PRODUCTION) {
     return BUILD_TYPES.PRODUCTION;
-  } else {
+  } else if (type === BUILD_TYPES.LIBRARY) {
+     return BUILD_TYPES.LIBRARY;
+   }else {
     return BUILD_TYPES.DEVELOPMENT;
   }
 }
